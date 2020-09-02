@@ -1,14 +1,27 @@
 import React from "react";
-import Filter from "../filter/filter";
 import Users from "../usersList/users";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div className="home">
-      <Filter />
-      <Users />
-    </div>
+    <Router>
+      <div className="home">
+        <Switch>
+          <Route path="/" exact component={WelcomePage} />
+          <Route path="/users" component={Users} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
+
+const WelcomePage = () => (
+  <div>
+    <h2> Welcome to ReactSPA</h2>
+    <Link to="/users">
+      <button>Users List</button>
+    </Link>
+  </div>
+);
 
 export default Home;
