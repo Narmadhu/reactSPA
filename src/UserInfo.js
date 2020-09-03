@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UsersContext } from "./usersContext";
+// import Users from "./usersList/users";
 
-const UserInfo = () => {
+const UserInfo = ({ match }) => {
+  const [userInfo, setUserInfo] = useContext(UsersContext);
   return (
     <div className="UserInfo">
-      <h3> </h3>
+      <h3>UserInfo</h3>
     </div>
   );
 };

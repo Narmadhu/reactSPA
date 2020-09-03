@@ -1,36 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import User from "../User";
 import { Link } from "react-router-dom";
+import { UsersContext } from "../usersContext";
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
+  const [users, setUsers] = useContext(UsersContext);
+  // const [userInfo, setUserInfo] = useContext(UserInfoContext);
 
-  const getSearch = (e) => {
-    e.preventDefault();
-    setQuery(search);
-  };
+  //   const [userInfo, setUserInfo] = useState([]);
+  //   const [search, setSearch] = useState("");
+  //   const [query, setQuery] = useState("");
 
-  useEffect(() => {
-    getUsers();
-  }, [query]);
+  //   const getSearch = (e) => {
+  //     e.preventDefault();
+  //     setQuery(search);
+  //   };
 
-  const updateSearch = (e) => {
-    setSearch(e.target.value);
-    console.log(search);
-  };
+  // useEffect(() => {
+  //   getUsers();
+  // }, []); //query
 
-  const getUsers = async () => {
-    const response = await fetch(`https://reqres.in/api/users?page=2`);
-    const data = await response.json();
-    console.log(data.data);
-    setUsers(data.data);
-  };
+  //   const updateSearch = (e) => {
+  //     setSearch(e.target.value);
+  //     console.log(search);
+  //   };
 
   return (
     <div className="users">
-      <form onSubmit={getSearch} className="filter-form">
+      {/* <form onSubmit={getSearch} className="filter-form">
         <h3>Filter by</h3>
         <input
           type="text"
@@ -39,12 +36,17 @@ const Users = () => {
           onChange={updateSearch}
         />
         <button type="submit">Apply</button>
-      </form>
-      <h3>List of users</h3>
+      </form> */}
+      <h3>List of users : ({users.length})</h3>
 
       {users.map((user) => (
         <Link to={`/users/${user.id}`}>
-          <User firstname={user.first_name} image={user.avatar} key={user.id} />
+          <User
+            firstname={user.first_name}
+            image={user.avatar}
+            key={user.id}
+            length={user.length}
+          />
         </Link>
       ))}
     </div>
