@@ -43,7 +43,9 @@ const Users = () => {
       <h3>List of users</h3>
 
       {users.map((user) => (
-        <User firstname={user.first_name} image={user.avatar} key={user.id} />
+        <Link to={`/users/${user.id}`}>
+          <User firstname={user.first_name} image={user.avatar} key={user.id} />
+        </Link>
       ))}
     </div>
   );

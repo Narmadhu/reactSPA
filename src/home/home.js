@@ -1,5 +1,6 @@
 import React from "react";
 import Users from "../usersList/users";
+import UserInfo from "../UserInfo";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function Home() {
@@ -8,7 +9,8 @@ function Home() {
       <div className="home">
         <Switch>
           <Route path="/" exact component={WelcomePage} />
-          <Route path="/users" component={Users} />
+          <Route path="/users" exact component={Users} />
+          <Route path="/users/:id" component={UserInfo} />
         </Switch>
       </div>
     </Router>
